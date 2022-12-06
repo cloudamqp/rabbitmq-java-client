@@ -132,19 +132,19 @@ public abstract class TTLHandling extends BrokerTestCase {
     }
 
     @Test public void transactionalPublishWithGet() throws Exception {
-        declareAndBindQueue(100);
+        declareAndBindQueue(200); // LavinMQ is only accurate to 100ms
 
         this.channel.txSelect();
 
         publish(MSG[0]);
-        Thread.sleep(150);
+        Thread.sleep(250);
 
         publish(MSG[1]);
         this.channel.txCommit();
-        Thread.sleep(50);
+        Thread.sleep(100);
 
         assertEquals(MSG[0], get());
-        Thread.sleep(80);
+        Thread.sleep(180);
 
         assertNull(get());
     }
