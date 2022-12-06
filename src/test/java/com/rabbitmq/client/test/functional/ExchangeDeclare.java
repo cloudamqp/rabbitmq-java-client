@@ -25,6 +25,7 @@ import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.test.TestUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
@@ -46,21 +47,25 @@ public class ExchangeDeclare extends ExchangeEquivalenceBase {
         verifyEquivalent(NAME, TYPE, false, false, null);
     }
 
+    @Disabled("LavinMQ does not allow line feeds")
     @Test public void singleLineFeedStrippedFromExchangeName() throws IOException {
         channel.exchangeDeclare("exchange_test\n", TYPE, false, false, null);
         verifyEquivalent(NAME, TYPE, false, false, null);
     }
 
+    @Disabled("LavinMQ does not allow line feeds")
     @Test public void multipleLineFeedsStrippedFromExchangeName() throws IOException {
         channel.exchangeDeclare("exchange\n_test\n", TYPE, false, false, null);
         verifyEquivalent(NAME, TYPE, false, false, null);
     }
 
+    @Disabled("LavinMQ does not allow line feeds")
     @Test public void multipleLineFeedAndCarriageReturnsStrippedFromExchangeName() throws IOException {
         channel.exchangeDeclare("e\nxc\rhange\n\r_test\n\r", TYPE, false, false, null);
         verifyEquivalent(NAME, TYPE, false, false, null);
     }
 
+    @Disabled("LavinMQ considers all args when comparing")
     @Test public void exchangeNonsenseArgsEquivalent() throws IOException {
         channel.exchangeDeclare(NAME, TYPE, false, false, null);
         Map<String, Object> args = new HashMap<String, Object>();

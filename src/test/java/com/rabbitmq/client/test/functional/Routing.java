@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.AlreadyClosedException;
@@ -289,6 +290,7 @@ public class Routing extends BrokerTestCase
         checkGet(Q2, false);
     }
 
+    @Disabled("LavinMQ does support publishing with immediate=true")
     @Test public void basicReturn() throws IOException {
         channel.addReturnListener(makeReturnListener());
         returnCell = new BlockingCell<Integer>();

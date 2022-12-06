@@ -23,6 +23,7 @@ import com.rabbitmq.client.impl.recovery.AutorecoveringConnection;
 import com.rabbitmq.client.test.BrokerTestCase;
 import com.rabbitmq.client.test.TestUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import javax.net.SocketFactory;
 import java.io.IOException;
@@ -109,6 +110,7 @@ public class UnexpectedFrames extends BrokerTestCase {
         });
     }
 
+    @Disabled("LavinMQ closes the socket before the full publish has been sent as it's malformed")
     @Test public void missingMethod() throws IOException {
         expectUnexpectedFrameError(new Confuser() {
             public Frame confuse(Frame frame) {
@@ -123,6 +125,7 @@ public class UnexpectedFrames extends BrokerTestCase {
         });
     }
 
+    @Disabled("LavinMQ closes the socket before the full publish has been sent as it's malformed")
     @Test public void missingBody() throws IOException {
         expectUnexpectedFrameError(new Confuser() {
             public Frame confuse(Frame frame) {

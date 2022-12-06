@@ -21,6 +21,7 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.test.BrokerTestCase;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -90,6 +91,7 @@ public class QueueLifecycle extends BrokerTestCase {
      * Declare-Ok if the requested queue matches these fields, and MUST
      * raise a channel exception if not."
      */
+    @Disabled("LavinMQ considers all args when comparing")
     @Test public void queueEquivalence() throws IOException {
         String q = "queue";
         channel.queueDeclare(q, false, false, false, null);
@@ -180,16 +182,19 @@ public class QueueLifecycle extends BrokerTestCase {
         }
     }
 
+    @Disabled("LavinMQ does not allow line feeds")
     @Test public void singleLineFeedStrippedFromQueueName() throws IOException {
         channel.queueDeclare("que\nue_test", false, false, true, null);
         verifyQueue(NAME_STRIPPED, false, false, true, null);
     }
 
+    @Disabled("LavinMQ does not allow line feeds")
     @Test public void multipleLineFeedsStrippedFromQueueName() throws IOException {
         channel.queueDeclare("que\nue_\ntest\n", false, false, true, null);
         verifyQueue(NAME_STRIPPED, false, false, true, null);
     }
 
+    @Disabled("LavinMQ does not allow line feeds")
     @Test public void multipleLineFeedAndCarriageReturnsStrippedFromQueueName() throws IOException {
         channel.queueDeclare("q\ru\ne\r\nue_\ntest\n\r", false, false, true, null);
         verifyQueue(NAME_STRIPPED, false, false, true, null);

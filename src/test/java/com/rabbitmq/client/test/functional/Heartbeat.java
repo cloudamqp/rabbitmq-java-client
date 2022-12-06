@@ -20,6 +20,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.impl.recovery.AutorecoveringConnection;
 import com.rabbitmq.client.test.BrokerTestCase;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.io.IOException;
 
@@ -34,6 +35,7 @@ public class Heartbeat extends BrokerTestCase {
         return cf;
     }
 
+    @Disabled("LavinMQ relies on TCP keepalives, not on artifical HB frames")
     @Test
     public void heartbeat() throws InterruptedException {
         assertEquals(1, connection.getHeartbeat());

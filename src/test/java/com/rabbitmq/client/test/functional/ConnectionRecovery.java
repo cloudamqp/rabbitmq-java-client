@@ -24,6 +24,7 @@ import com.rabbitmq.client.test.BrokerTestCase;
 import com.rabbitmq.client.test.TestUtils;
 import com.rabbitmq.tools.Host;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.io.IOException;
 
@@ -70,6 +71,7 @@ public class ConnectionRecovery extends BrokerTestCase {
         }
     }
 
+    @Disabled("lavinmqctl start/stop_app not supported yet")
     @Test public void connectionRecoveryWithServerRestart() throws IOException, InterruptedException {
         assertThat(connection.isOpen()).isTrue();
         restartPrimaryAndWaitForRecovery();
@@ -230,6 +232,7 @@ public class ConnectionRecovery extends BrokerTestCase {
         wait(latch);
     }
 
+    @Disabled("Blocking not supported with lavinmqctl")
     @Test public void blockedListenerRecovery() throws IOException, InterruptedException {
         final CountDownLatch latch = new CountDownLatch(2);
         connection.addBlockedListener(new BlockedListener() {
@@ -367,6 +370,7 @@ public class ConnectionRecovery extends BrokerTestCase {
     }
 
     // bug 26552
+    @Disabled("lavinmqctl start/stop_app not supported yet")
     @Test public void clientNamedTransientAutoDeleteQueueAndBindingRecovery() throws IOException, InterruptedException, TimeoutException {
         String q   = UUID.randomUUID().toString();
         String x   = "tmp-fanout";
@@ -390,6 +394,7 @@ public class ConnectionRecovery extends BrokerTestCase {
     }
 
     // bug 26552
+    @Disabled("lavinmqctl start/stop_app not supported yet")
     @Test public void serverNamedTransientAutoDeleteQueueAndBindingRecovery() throws IOException, InterruptedException, TimeoutException {
         String x   = "tmp-fanout";
         Channel ch = connection.createChannel();

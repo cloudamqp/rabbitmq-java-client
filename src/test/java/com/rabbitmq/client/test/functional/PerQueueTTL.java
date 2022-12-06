@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.MessageProperties;
@@ -54,6 +55,7 @@ public class PerQueueTTL extends TTLHandling {
         declareQueue(10L);
     }
 
+    @Disabled("LavinMQ ignores type for x-message-ttl as long as the values are equal")
     @Test public void queueReDeclareSemanticNonEquivalence() throws Exception {
         declareQueue(10);
         try {

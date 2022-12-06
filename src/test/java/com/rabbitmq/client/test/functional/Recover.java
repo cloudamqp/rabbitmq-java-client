@@ -29,6 +29,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import com.rabbitmq.client.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import com.rabbitmq.client.test.BrokerTestCase;
 
@@ -109,6 +110,7 @@ public class Recover extends BrokerTestCase {
         verifyNoRedeliveryWithAutoAck(recoverSync);
     }
 
+    @Disabled("LavinMQ does support basicRecover with requeue=false")
     @Test public void requeueFalseNotSupported() throws Exception {
         try {
             channel.basicRecover(false);

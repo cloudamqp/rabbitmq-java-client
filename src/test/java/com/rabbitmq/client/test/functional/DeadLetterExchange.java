@@ -178,7 +178,7 @@ public class DeadLetterExchange extends BrokerTestCase {
         long stop = System.currentTimeMillis();
         assertNotNull(body);
         channel.basicCancel(cTag);
-        long latency = stop-start;
+        long latency = stop-start + 200; // LavinMQ is only accurate too 100ms for TTL/expiration
 
         channel.basicConsume(DLQ, true, c);
 

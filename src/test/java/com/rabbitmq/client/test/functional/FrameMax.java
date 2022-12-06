@@ -33,6 +33,7 @@ import java.util.concurrent.TimeoutException;
 import com.rabbitmq.client.impl.AMQBasicProperties;
 import com.rabbitmq.client.test.TestUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Address;
@@ -100,6 +101,7 @@ public class FrameMax extends BrokerTestCase {
 
     /* server should reject frames larger than the negotiated frame
      * size */
+    @Disabled("LavinMQ closes the socket before the full publish has been sent as it's malformed")
     @Test public void rejectExceedingFrameMax()
             throws IOException, TimeoutException {
         closeChannel();
