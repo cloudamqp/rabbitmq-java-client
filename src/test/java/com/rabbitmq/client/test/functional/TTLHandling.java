@@ -141,7 +141,7 @@ public abstract class TTLHandling extends BrokerTestCase {
 
         publish(MSG[1]);
         this.channel.txCommit();
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         assertEquals(MSG[0], get());
         Thread.sleep(180);
