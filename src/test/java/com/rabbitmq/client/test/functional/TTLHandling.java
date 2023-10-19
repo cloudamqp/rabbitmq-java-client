@@ -119,7 +119,7 @@ public abstract class TTLHandling extends BrokerTestCase {
         declareAndBindQueue(200);
 
         publish(MSG[0]);
-        Thread.sleep(150);
+        Thread.sleep(300);
 
         publish(MSG[1]);
         Thread.sleep(100);
@@ -137,14 +137,13 @@ public abstract class TTLHandling extends BrokerTestCase {
         this.channel.txSelect();
 
         publish(MSG[0]);
-        Thread.sleep(400);
-
+        Thread.sleep(50);
         publish(MSG[1]);
         this.channel.txCommit();
-        Thread.sleep(400);
+        Thread.sleep(50);
 
         assertEquals(MSG[0], get());
-        Thread.sleep(400);
+        Thread.sleep(200);
 
         assertNull(get());
     }
@@ -163,7 +162,7 @@ public abstract class TTLHandling extends BrokerTestCase {
         closeChannel();
         openChannel();
 
-        Thread.sleep(300);
+        Thread.sleep(250);
         expectBodyAndRemainingMessages(MSG[1], 1);
         expectBodyAndRemainingMessages(MSG[2], 0);
     }
