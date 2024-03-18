@@ -153,7 +153,7 @@ public abstract class TTLHandling extends BrokerTestCase {
         declareAndBindQueue(400);
 
         publish(MSG[0]);
-        Thread.sleep(200);
+        Thread.sleep(250);
         publish(MSG[1]);
         publish(MSG[2]);
 
@@ -163,7 +163,7 @@ public abstract class TTLHandling extends BrokerTestCase {
         closeChannel();
         openChannel();
 
-        Thread.sleep(400);
+        Thread.sleep(250);
         expectBodyAndRemainingMessages(MSG[1], 1);
         expectBodyAndRemainingMessages(MSG[2], 0);
     }
