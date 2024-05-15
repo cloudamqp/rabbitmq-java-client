@@ -33,7 +33,7 @@ import com.rabbitmq.client.test.BrokerTestCase;
 import com.rabbitmq.tools.Host;
 
 public class Policies extends BrokerTestCase {
-    private static final int DELAY = 120; // MILLIS
+    private static final int DELAY = 300; // MILLIS
 
     @Override protected void createResources() throws IOException {
         setPolicy("AE", "^has-ae", "\"alternate-exchange\":\"ae\"");
